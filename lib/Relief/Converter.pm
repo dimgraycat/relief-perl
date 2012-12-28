@@ -7,7 +7,7 @@ use Relief::Module::Loader;
 sub new {
     my $class = shift;
     my $engine = shift;
-    my $module = Relief::Module::Loader::load_with_prefix(
+    my $module = Relief::Module::Loader->load_with_prefix(
         __PACKAGE__.'::Engine', "-$engine"
     );
     return $module->new(@_);

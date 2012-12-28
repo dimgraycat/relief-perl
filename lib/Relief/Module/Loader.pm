@@ -9,7 +9,7 @@ use Data::Dump qw/ dump /;
 use Relief::Exception qw/ throw /;
 
 sub load {
-    my $module = shift;
+    my ($class, $module) = @_;
     return if not $module;
     return $module if Class::Inspector->loaded($module);
     unless ( $module->require ) {
@@ -20,9 +20,9 @@ sub load {
 }
 
 sub load_with_prefix {
-    my ($prefix, $module_syntax) = @_;
+    my ($class, $prefix, $module_syntax) = @_;
     return if not $module_syntax;
-    return __PACKAGE__::load(_modify_package($prefix, $module_syntax));
+    return $class->load(_modify_package($prefix, $module_syntax));
 }
 
 sub _modify_package {
