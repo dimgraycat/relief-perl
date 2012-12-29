@@ -2,7 +2,10 @@ package Relief::Converter;
 use strict;
 use warnings;
 
+use Exporter qw/ import /;
 use Relief::Module::Loader;
+
+our @EXPORT_OK = qw/ encode decode /;
 
 sub new {
     my $class = shift;
