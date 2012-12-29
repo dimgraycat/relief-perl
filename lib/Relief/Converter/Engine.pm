@@ -16,10 +16,10 @@ sub encode { throw('please override'); }
 sub decode { throw('please override'); }
 
 sub decode_file {
-    my ($self, $file_path ) = @_;
-    throw(q{can't find %s}, $file_path) if (not -e $file_path);
-    my $file_data = File::Slurp::read_file($file_path);
-    return $self->decode($file_data);
+    my ($self, $file_path) = @_;
+    throw(q{can't find %s}, $file_path) unless (-e $file_path);
+    my $yaml_data = File::Slurp::read_file($file_path);
+    return $self->decode($yaml_data);
 }
 
 1;
